@@ -44,7 +44,7 @@ app.use("/", require("./routes/routes"));
 //404 hander
 app.use((req, res, next) => {
   res.status(404).render("404", {
-    user:req.user
+    user:req.user,
   });
 });
 

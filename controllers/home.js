@@ -1,8 +1,8 @@
 const Company = require("../models/company");
 const Verification = require("../models/verification");
 const ErrorResponse = require("../utils/errorResponse");
-const path = require("path");
-const multer = require("multer");
+const cloudinary = require("../config/cloudinaryConfig");
+
 
 /**
  * @desc    Loads home page
@@ -81,7 +81,10 @@ exports.employees = async (req, res, next) => {
 exports.acceptanceLetter = async (req, res, next) => {
   const user = req.user;
   const workers = user.name;
-  const acceptance = req.file.filename;
+  const result = await cloudinary.uploader.upload(req.file.path);
+  const acceptance = result.secure_url;
+  console.log(acceptance);
+
   const { companyName, description } = req.body;
   Verification.create({
     workers,
@@ -96,3 +99,5 @@ exports.acceptanceLetter = async (req, res, next) => {
     message: "Data Updated",
   });
 };
+
+

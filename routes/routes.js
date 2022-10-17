@@ -32,7 +32,7 @@ const {
   verified,
   pendingVerification,
 } = require("../controllers/supervisors");
-const {upload} = require("../middleware/multer")
+const upload = require("../middleware/multer")
 /**
  * @desc    Authentication Pages
  * @access  Public

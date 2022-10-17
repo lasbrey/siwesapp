@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en" class="semi-dark">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- loader-->
+    <link href="/css/pace.min.css" rel="stylesheet" />
+    <script src="/js/pace.min.js"></script>
+    {{!-- image preview --}}
+    <script src="/js/imagepreview.js"></script>
+
+    <!--plugins-->
+    <link
+      href="/plugins/vectormap/jquery-jvectormap-2.0.2.css"
+      rel="stylesheet"
+    />
+    <link href="/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
+    <link href="/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
+    <link
+      href="/plugins/perfect-scrollbar/css/perfect-scrollbar.css"
+      rel="stylesheet"
+    />
+    <link
+      href="/plugins/metismenu/css/metisMenu.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- CSS Files -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/css/bootstrap-extended.css" rel="stylesheet" />
+    <link href="/css/style.css" rel="stylesheet" />
+    <link href="/css/icons.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!--Theme Styles-->
+    <link href="/css/dark-theme.css" rel="stylesheet" />
+    <link href="/css/semi-dark.css" rel="stylesheet" />
+    <link href="/css/header-colors.css" rel="stylesheet" />
+
+    <title>Siwes App</title>
+  </head>
+
+  <body>
+    <!--start wrapper-->
+    <div class="wrapper">
+      <!--start sidebar -->
+      <aside class="sidebar-wrapper" data-simplebar="true">
+        <div class="sidebar-header">
+          <div>
+            <img
+              src="/images/logo-icon-2.png"
+              class="logo-icon"
+              alt="logo icon"
+            />
+          </div>
+          <div>
+            <h4 class="logo-text">SiwesApp</h4>
+          </div>
+          <div class="toggle-icon ms-auto">
+            <ion-icon name="menu-sharp"></ion-icon>
+          </div>
+        </div>
+        <!--navigation-->
+        <ul class="metismenu" id="menu">
+          <li>
+            <a href="/" class="">
+              
+              <div class="menu-title">Dashboard</div>
+            </a>
+          </li>
+          <li class="menu-label">Student</li>
+          <li>
+            <a class="" href="/users">
+             
+              <div class="menu-title">Students</div>
+            </a>
+          </li>
+           <li>
+            <a class="" href="/companies">
+             
+              <div class="menu-title"> All Companies</div>
+            </a>
+          </li>
+          <li>
+            <a class="" href="/acceptanceletter">
+             
+              <div class="menu-title"> Acceptance Letter</div>
+            </a>
+          </li>
+          {{#ifEquals user.role 'company'}}
+          <li class="menu-label">Company</li>
+          <li>
+            <a href="/addcompany">
+               Add Company
+            </a>
+          </li>
+          <li>
+            <a href="/requests">
+               Intenship requests
+            </a>
+          </li>
+          {{/ifEquals}}
+          {{#ifEquals user.role 'supervisor'}}
+          <li class="menu-label">Supervisor</li>
+          <li>
+            <a href="/adduser">
+               Add User
+            </a>
+          </li>
+          <li>
+            <a href="/supervisors">
+               All Supervisors
+            </a>
+          </li>
+          <li>
+            <a href="/users">
+               All Users
+            </a>
+          </li>
+          <li>
+            <a href="/pending">
+               Acceptance letter requests
+            </a>
+          </li>
+          {{/ifEquals}}
+                    {{#ifEquals user.role 'admin'}}
+          <li class="menu-label">Company</li>
+          <li>
+            <a href="/addcompany">
+               Add Company
+            </a>
+          </li>
+          <li>
+            <a href="/requests">
+               Intenship requests
+            </a>
+          </li>
+          <li class="menu-label">Supervisor</li>
+          <li>
+            <a href="/adduser">
+               Add User
+            </a>
+          </li>
+          <li>
+            <a href="/supervisors">
+               All Supervisors
+            </a>
+          </li>
+          <li>
+            <a href="/users">
+               All Users
+            </a>
+          </li>
+          <li>
+            <a href="/pending">
+               Acceptance letter requests
+            </a>
+          </li>
+          {{/ifEquals}}
+          <li class="menu-label">Account</li>
+          <li>
+            <a href="/logout">
+              Logout
+            </a>
+          </li>
+        </ul>
+        <!--end navigation-->
+      </aside>
+      <!--end sidebar -->
+
+      <!--start top header-->
+      <header class="top-header">
+        <nav class="navbar navbar-expand gap-3">
+         
+          <div class="top-navbar-right ms-auto">
+            <ul class="navbar-nav align-items-center">
+              <li class="nav-item dropdown dropdown-user-setting">
+                <a
+                  class="nav-link dropdown-toggle dropdown-toggle-nocaret"
+                  href="javascript:;"
+                  data-bs-toggle="dropdown"
+                >
+                  <div class="user-setting">
+                    <img
+                      src="/uploads/{{user.photo}}"
+                      class="user-img"
+                      alt=""
+                    />
+                  </div>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end">
+                  <li>
+                    <a class="dropdown-item" href="javascript:;">
+                      <div class="d-flex flex-row align-items-center gap-2">
+                        <img
+                          src="/uploads/{{user.photo}}"
+                          alt=""
+                          class="rounded-circle"
+                          width="54"
+                          height="54"
+                        />
+                        <div class="">
+                          <h6 class="mb-0 dropdown-user-name">{{user.name}}</h6>
+                          <small
+                            class="mb-0 dropdown-user-designation text-secondary"
+                            >{{user.siwesCompany}}</small
+                          >
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <hr class="dropdown-divider" />
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="/profile">
+                      <div class="d-flex align-items-center">
+                        <div class="ms-3"><span>Profile</span></div>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="/edituser">
+                      <div class="d-flex align-items-center">
+                        <div class="ms-3"><span>Edit Account</span></div>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="/logout">
+                      <div class="d-flex align-items-center">
+                        <div class="ms-3"><span>Logout</span></div>
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <!--end top header-->

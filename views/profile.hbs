@@ -1,0 +1,49 @@
+ {{>header}}
+ <!-- start page content wrapper-->
+      <div class="page-content-wrapper">
+        <!-- start page content-->
+        <div class="page-content">
+          <!--start breadcrumb-->
+          <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+            <div class="breadcrumb-title pe-3">Profile</div>
+          </div>
+          <!--end breadcrumb-->
+
+          <div class="row">
+                  <div class="card radius-10  mx-auto col-lg-8">
+                    <div class="card-body">
+                      
+                      <div class="mb-4 d-flex flex-column gap-3 align-items-center justify-content-center">
+                        <div class="user-change-photo shadow">
+                          <img src="/uploads/{{user.photo}}">
+                        </div>
+                      </div> 
+                      <h5 class="mb-0 mt-4">User's Information</h5>
+                      <hr>
+                      <div class="row g-3">
+                        <div class="col-6">
+                           <label class="form-label"> Name</label>
+                           <labal  class="form-control" > {{user.name}}</labal>
+                        </div>
+                        <div class="col-6">
+                         <label class="form-label">Email address</label>
+                          <labal class="form-control" > {{user.email}}</labal>
+                       </div>
+                     </div>
+        
+                     <h5 class="mb-0 mt-4">Contact Information</h5>
+                     <hr>
+                     <div class="row g-3">
+                      <div class="col-12">
+                        <label class="form-label">Address</label>
+                         <label class="form-control"> {{user.address}}</label>
+                       </div>
+                       
+                    </div>
+              </div><!--end row-->
+    
+        </div>
+        <!-- end page content-->
+      </div>
+      <!--end page content wrapper-->
+      {{>footer}}

@@ -1,0 +1,62 @@
+ {{>header}}
+ <!-- start page content wrapper-->
+      <div class="page-content-wrapper">
+        <!-- start page content-->
+        <div class="page-content">
+          <!--start breadcrumb-->
+          <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+            <div class="breadcrumb-title pe-3">Add User</div>
+          </div>
+          <!--end breadcrumb-->
+
+          <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-5">
+                  <div class="card radius-10 w-100">
+                    <div class="card-body">
+                       {{#if message }}
+							<h4 class="alert alert-success mt-4">{{message}}</h4>
+							{{/if}}
+                      <form method="post" action="/adduser" enctype="multipart/form-data">
+                      <div class="mb-4 d-flex flex-column gap-3 align-items-center justify-content-center">
+                        <div class="user-change-photo shadow">
+                          <img src="https://via.placeholder.com/110X110/212529/fff" id="file-ip-1-preview">
+                        </div>
+                        <input style="display:none;" type="file" name="profilepicture" id="file-ip-1" accept="image/*" onchange="showPreview(event);">
+                        <label for="file-ip-1" class="btn btn-outline-dark btn-sm radius-30 px-4"><ion-icon name="image-sharp"></ion-icon>Add Photo</label>
+                      </div> 
+                      <h5 class="mb-0 mt-4">User Information</h5>
+                      <hr>
+                      <div class="row g-3">
+                        <div class="col-6">
+                           <label class="form-label">Full Name</label>
+                           <input type="text" class="form-control" name="name" id="name" placeholder="Enter Name">
+                        </div>
+                        <div class="col-6">
+                         <label class="form-label">Email address</label>
+                         <input type="text" class="form-control" name="email" id="email" placeholder="xyz@example.com">
+                       </div>
+                       <div class="col-6">
+                         <label class="form-label">Password</label>
+                         <input type="password" class="form-control" name="password" id="password" placeholder="*******">
+                       </div>
+                        <div class="col-6">
+                         <label class="form-label">Role</label>
+                         <select class="form-select mb-3" aria-label="Default select example" name="role">
+                <option value="student">Student</option>
+                <option value="company">Company</option>
+                <option value="supervisor">Supervisor</option>
+                <option value="admin">Admin</option>
+              </select>
+                       </div>
+                     </div>
+                      <div class="text-start mt-3">
+                        <button type="submit" class="btn btn-dark px-4">Add User</button>
+                      </div>
+                    </div>
+                   </form>
+              </div><!--end row-->
+    
+        </div>
+        <!-- end page content-->
+      </div>
+      <!--end page content wrapper-->
+      {{>footer}}

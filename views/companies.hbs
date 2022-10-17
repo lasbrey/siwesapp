@@ -1,0 +1,97 @@
+{{>header}}
+    <!-- start page content wrapper-->
+    <div class="page-content-wrapper">
+  <!-- start page content-->
+        <div class="page-content">
+          <!--start breadcrumb-->
+          <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+            <div class="breadcrumb-title pe-3">All Companies</div>
+          </div>
+          <!--end breadcrumb-->
+             
+          <!--start shop area-->
+				<section class="shop-page">
+					<div class="shop-container">
+            <div class="card shadow-sm border-0">
+             <div class="card-body">
+						<div class="row">
+              
+							<div class="col-12 col-xl-12">
+								<div class="product-wrapper">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="position-relative">
+                         <input type="text" class="form-control ps-5" placeholder="Search Company...">
+                         <span class="position-absolute top-50 product-show translate-middle-y"><ion-icon name="search-sharp" class="ms-3 fs-6"></ion-icon></span>
+                      </div>
+                    </div>
+                  </div>
+									<div class="product-grid">
+											 {{#each company}}
+
+                    <div class="card product-card">
+											<div class="row g-0">
+												<div class="col-md-4">
+                          <div class="p-3">
+                            <img src="https://via.placeholder.com/400X300/212529/fff" class="img-fluid" alt="...">
+                          </div>
+												</div>
+												<div class="col-md-8">
+													<div class="card-body">
+														<div class="product-info">
+															<a href="javascript:;">
+																<p class="product-catergory font-13 mb-1">{{slug}}</p>
+															</a>
+															<a href="ecommerce-product-details.html">
+																<h6 class="product-name mb-2">{{companyName}}</h6>
+															</a>
+															<p class="card-text">{{companyDescription}}</p>
+															
+															<div class="product-action mt-2">
+																<div class="d-flex gap-2">
+																<a href="javascript:;" class="btn btn-dark btn-ecomm">View Company</a>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										{{/each}}
+                    
+									</div>
+									{{!-- <hr>
+									<nav class="d-flex justify-content-between" aria-label="Page navigation">
+										<ul class="pagination">
+											<li class="page-item"><a class="page-link" href="javascript:;"><i class='bx bx-chevron-left'></i> Prev</a>
+											</li>
+										</ul>
+										<ul class="pagination">
+											<li class="page-item active d-none d-sm-block" aria-current="page"><span class="page-link">1<span class="visually-hidden">(current)</span></span>
+											</li>
+											<li class="page-item d-none d-sm-block"><a class="page-link" href="javascript:;">2</a>
+											</li>
+											<li class="page-item d-none d-sm-block"><a class="page-link" href="javascript:;">3</a>
+											</li>
+											<li class="page-item d-none d-sm-block"><a class="page-link" href="javascript:;">4</a>
+											</li>
+											<li class="page-item d-none d-sm-block"><a class="page-link" href="javascript:;">5</a>
+											</li>
+										</ul>
+										<ul class="pagination">
+											<li class="page-item"><a class="page-link" href="javascript:;" aria-label="Next">Next <i class='bx bx-chevron-right'></i></a>
+											</li>
+										</ul>
+									</nav> --}}
+								</div>
+							</div>
+						  </div><!--end row-->
+            </div>
+           </div>
+					</div>
+				</section>
+				<!--end shop area-->
+
+          </div>
+          <!-- end page content-->
+		  {{>footer}}

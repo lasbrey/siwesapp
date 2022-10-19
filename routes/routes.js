@@ -15,6 +15,8 @@ const {
   getCompany,
   getCompanies,
   employees,
+  students,
+  profile,
   acceptanceLetter,
 } = require("../controllers/home");
 const {
@@ -59,8 +61,10 @@ router
       user: req.user
     })
   })
+  .get("/profile/:name", isAuthenticated, profile)
+  .get("/students", isAuthenticated, students)
   .get("/companies/:slug", isAuthenticated, getCompany)
-  .post("/companies/:slug", isAuthenticated, getCompany)
+  // .post("/companies/:slug", isAuthenticated, getCompany)
   .get("/companies", isAuthenticated, getCompanies)
   .get("/updatedetails", isAuthenticated, updateDetails)
   .post("/updatedetails", isAuthenticated, updateDetails)
@@ -81,6 +85,7 @@ router
   .get("/request", isAuthenticated, (req, res) => {
     res.render("requests", {
       title: "Intenship Request",
+      user:req.user
     });
   })
   .post("/request", isAuthenticated, request, authorize("company"))
@@ -152,11 +157,7 @@ router
     verified,
     authorize("supervisor", "admin")
   )
-  .get("/pending", isAuthenticated, authorize("supervisor", "admin"), (req, res) => {
-    res.render("pendingverification", {
-      title: "Pending Verification",
-    });
-  })
+  .get("/pending", isAuthenticated, authorize("supervisor", "admin"), pendingVerification )
   .post(
     "/pending",
     isAuthenticated,

@@ -26,8 +26,12 @@
                             </thead>
                             <tbody>
                                 {{#each allUsers}}
-                                <tr>
-                                    <th>{{photo}}</th>
+                                <tr onclick="window.location='/profile/{{name}}'">
+                                    <th>
+                                        <div class="product-box border">
+                                            <img src="{{photo}}" alt="" />
+                                        </div>
+                                    </th>
                                     <th>{{name}}</th>
                                     <th>{{email}}</th>
                                     <th>{{role}}</th>

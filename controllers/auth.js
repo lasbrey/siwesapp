@@ -54,7 +54,6 @@ exports.register = async (req, res, next) => {
 
   if (oldUser) {
     // res.send({ message: "Email address has been taken :(" });
-    console.log("email taken");
     return res.render("register", {
       title: "Register",
       message: "Email already in use"

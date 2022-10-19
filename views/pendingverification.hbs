@@ -1,0 +1,50 @@
+   {{>header}}
+   <!-- start page content wrapper-->
+      <div class="page-content-wrapper">
+        <!-- start page content-->
+        <div class="page-content">
+          <!--start breadcrumb-->
+          <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+            <div class="breadcrumb-title pe-3">Pending Verification</div>
+          </div>
+          <!--end breadcrumb-->
+
+          <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-5">
+           
+            <div class="card radius-10 w-100">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="example2" class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Company Image</th>
+                                    <th>Company Name</th>
+                                    <th>Company Description</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each awaiting }}
+                                <tr>
+                                    <td>
+                                        <div class="product-box border">
+                                            <img src="{{Letter}}" alt="" />
+                                        </div>
+                                    </td>
+                                    <td>{{companyName}}</td>
+                                    <td>{{companyDescrption}}</td>
+                                    <td>{{status}}</td>
+                                    <td><button class="btn btn-dark">Approve</button></td>
+                                    <td><button class="btn btn-danger">Reject</button></td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end page content-->
+      </div>
+      <!--end page content wrapper-->
+      {{>footer}}

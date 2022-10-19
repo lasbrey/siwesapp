@@ -1546,3 +1546,7 @@ ul.categories-list li {
         height: auto;
     }
 }
+tr:hover{
+    cursor: pointer;
+
+}

@@ -26,35 +26,37 @@
                       </div>
                     </div>
                   </div>
-									<div class="product-grid">
+									<div class="product-grid row">
 											 {{#each company}}
 
-                    <div class="card product-card">
-											<div class="row g-0">
-												<div class="col-md-4">
+                    <div class=" col-sm-12 col-xl-6 col-md-6 p-3 ">
+						<div class="card product-card m-1">
+											<div class="row g-0 m-1">
+												<div class="col-md-6">
                           <div class="p-3">
-                            <img src="{{comapny.companyImage}}" class="img-fluid" alt="...">
+                            <img src="{{companyImage}}" class="img-fluid" alt="...">
                           </div>
 												</div>
-												<div class="col-md-8">
+												<div class="col-md-6">
 													<div class="card-body">
 														<div class="product-info">
 															<a href="javascript:;">
 																<p class="product-catergory font-13 mb-1">{{slug}}</p>
 															</a>
-															<a href="ecommerce-product-details.html">
+															<a href="/companies/{{slug}}">
 																<h6 class="product-name mb-2">{{companyName}}</h6>
 															</a>
 															<p class="card-text">{{companyDescription}}</p>
 															
 															<div class="product-action mt-2">
 																<div class="d-flex gap-2">
-																<a href="javascript:;" class="btn btn-dark btn-ecomm">View Company</a>
+																<a href="/companies/{{slug}}" class="btn btn-dark btn-ecomm">View Company</a>
 																</div>
 															</div>
 														</div>
 													</div>
 												</div>
+											</div>
 											</div>
 										</div>
 										{{/each}}

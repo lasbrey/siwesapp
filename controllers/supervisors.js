@@ -17,7 +17,6 @@ exports.addUser = async (req, res, next) => {
   const oldUser = await User.findOne({ email });
 
   if (oldUser) {
-    console.log("email taken");
     return res.render("newuser", {
       title: "Create New User",
       message: "Email already in use",
@@ -76,7 +75,7 @@ exports.editUser = async (req, res, next) => {
  */
 exports.users = async (req, res, next) => {
   const user = req.user,
-    allUsers = User.find({});
+    allUsers = await User.find({});
 
   res.render("users", {
     title: "All Users",
@@ -90,8 +89,8 @@ exports.users = async (req, res, next) => {
  * @access  Public
  */
 exports.supervisors = async (req, res, next) => {
-  const user = JSON.parse(JSON.stringify(req.user)),
-    supervisors = User.find({ supervisors });
+  const user = JSON.parse(JSON.stringify(req.user));
+  const supervisors = await User.find({ role: 'supervisor' });
 
   res.render("supervisors", {
     title: "All Supervisors",
@@ -123,12 +122,12 @@ exports.deleteUser = async (req, res, next) => {
 
 /**
  * @desc    Pending acceptance letter
- * @route   DELETE /verification
+ * @route   get /pending
  * @access  Private
  */
 exports.pendingVerification = async (req, res) => {
   const user = req.user;
-  const awaiting = Verification.find("Pending");
+  const awaiting = await Verification.find({ status : 'Pending' });
 
   res.render("pendingverification", {
     title: "Pending Acceptance letters",

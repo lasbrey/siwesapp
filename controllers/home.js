@@ -1,4 +1,5 @@
 const Company = require("../models/company");
+const User = require("../models/user");
 const Verification = require("../models/verification");
 const ErrorResponse = require("../utils/errorResponse");
 const cloudinary = require("../config/cloudinaryConfig");
@@ -9,8 +10,8 @@ const cloudinary = require("../config/cloudinaryConfig");
  * @access  Public
  */
 exports.home = async (req, res, next) => {
-  const user = req.user,
-    company = Company.find({}).limit(10);
+  const user = req.user;
+  const company = await Company.find({});
 
   res.render("home", {
     title: "Home",
@@ -25,11 +26,11 @@ exports.home = async (req, res, next) => {
  * @access  Public
  */
 exports.getCompany = async (req, res, next) => {
-  const company = await Company.findById(req.params.id);
+  const company = await Company.findOne({slug : req.params.slug});
 
-  if (!food)
+  if (!company)
     return next(
-      new ErrorResponse(`Company not found with id #${req.params.id}`, 404)
+      new ErrorResponse(`Company not found with id #${req.params.slug}`, 404)
     );
 
   const user = req.user;
@@ -47,8 +48,7 @@ exports.getCompany = async (req, res, next) => {
  */
 exports.getCompanies = async (req, res, next) => {
   const user = req.user;
-  const company = Company.find({});
-  console.log(company)
+  const company = await Company.find({});
 
   res.render("companies", {
     title: "All Companies",
@@ -64,12 +64,48 @@ exports.getCompanies = async (req, res, next) => {
  */
 exports.employees = async (req, res, next) => {
   const user = req.user;
-  const company = Company.find({});
+  const company = await Company.find({});
 
   res.render("employees", {
     title: "All Employees",
     user,
     company,
+  });
+};
+/**
+ * @desc    Loads students page
+ * @route   GET /
+ * @access  Public
+ */
+exports.students = async (req, res, next) => {
+  const user = req.user;
+  const students = await User.find({ role: "student" });
+
+  res.render("student", {
+    title: "All Students",
+    user,
+    students,
+  });
+};
+
+/**
+ * @desc    Loads individual profile page
+ * @route   GET /profile/:name
+ * @access  Public
+ */
+ exports.profile = async (req, res, next) => {
+  const profile = await User.findOne({name : req.params.name});
+
+  if (!profile)
+    return next(
+      new ErrorResponse(`User not found with id #${req.params.name}`, 404)
+    );
+
+  const user = req.user;
+  res.render("individualprofile", {
+    title: profile.name,
+    user,
+    profile,
   });
 };
 
@@ -83,7 +119,6 @@ exports.acceptanceLetter = async (req, res, next) => {
   const workers = user.name;
   const result = await cloudinary.uploader.upload(req.file.path);
   const acceptance = result.secure_url;
-  console.log(acceptance);
 
   const { companyName, description } = req.body;
   Verification.create({

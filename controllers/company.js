@@ -14,7 +14,6 @@ exports.addCompany = async (req, res, next) => {
   const oldCompany = await Company.findOne({ email });
 
   if (oldCompany) {
-    console.log("Company Email taken");
     return res.render("addcompany", {
       title: "Create New Company",
       message: "Email already in use",

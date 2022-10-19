@@ -30,7 +30,7 @@ exports.login = async (req, res) => {
         expiresIn: process.env.JWT_EXPIRE,
       });
 
-      res.cookie("jwt", token).redirect("/");
+      res.cookie("jwt", token).redirect("/home");
     }
   } catch (error) {
     console.log(error);

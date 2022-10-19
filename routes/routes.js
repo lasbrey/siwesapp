@@ -40,6 +40,11 @@ const upload = require("../middleware/multer")
  * @access  Public
  */
 router
+.get("/", (req, res) => {
+  res.render("landing", {
+    title: "Home",
+  });
+})
   .get("/register", (req, res) => {
     res.render("register", {
       title: "Sign Up",
@@ -54,7 +59,7 @@ router
    * @desc    All roles accessible routes
    * @access  Public
    */
-  .get("/", isAuthenticated, home)
+  .get("/home", isAuthenticated, home)
   .get("/profile", isAuthenticated, (req, res) =>{
     res.render ("profile", {
       title: 'Profile',

@@ -124,7 +124,7 @@ router
    * @desc    Supervisor routes
    * @access  Public
    */
-   .get("/edituser", isAuthenticated, authorize("supervisor", "admin"), (req, res) => {
+   .get("/edituser", isAuthenticated, (req, res) => {
     res.render("edituser", {
       title: "Add User",
       user: req.user

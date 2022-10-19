@@ -3,14 +3,13 @@ const Verification = require("../models/verification");
 const bcrypt = require("bcryptjs");
 const cloudinary = require("../config/cloudinaryConfig");
 
-
 /**
  * @desc    Add new user
  * @route   POST /addcompany
  * @access  Private
  */
 exports.addUser = async (req, res, next) => {
-  const { name, email, password, role } = req.body;
+  const { name, email, password, address, role } = req.body;
   const user = req.user;
   const result = await cloudinary.uploader.upload(req.file.path);
   const photo = result.secure_url;
@@ -28,6 +27,7 @@ exports.addUser = async (req, res, next) => {
     name,
     email,
     password: hashedPassword,
+    address,
     role,
     photo,
   });

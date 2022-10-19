@@ -1,5 +1,5 @@
-{{> header}}
-      <!-- start page content wrapper-->
+ {{>header}}
+ <!-- start page content wrapper-->
       <div class="page-content-wrapper">
         <!-- start page content-->
         <div class="page-content">
@@ -12,41 +12,38 @@
           <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-5">
                   <div class="card radius-10 w-100">
                     <div class="card-body">
-                      <form method="post" action="/addcompany">
+                       {{#if message }}
+							<h4 class="alert alert-success mt-4">{{message}}</h4>
+							{{/if}}
+                      <form method="post" action="/addcompany" enctype="multipart/form-data">
                       <div class="mb-4 d-flex flex-column gap-3 align-items-center justify-content-center">
                         <div class="user-change-photo shadow">
-                          <img src="https://via.placeholder.com/110X110/212529/fff" alt="...">
+                          <img src="https://via.placeholder.com/110X110/212529/fff" id="file-ip-1-preview">
                         </div>
-                        <button type="button" class="btn btn-outline-dark btn-sm radius-30 px-4"><ion-icon name="image-sharp"></ion-icon>Add Photo</button>
-                      </div>
-                      <h5 class="mb-0 mt-4">Company Information</h5>
+                        <input style="display:none;" type="file" name="profilepicture" id="file-ip-1" accept="image/*" onchange="showPreview(event);">
+                        <label for="file-ip-1" class="btn btn-outline-dark btn-sm radius-30 px-4"><ion-icon name="image-sharp"></ion-icon>Add Photo</label>
+                      </div> 
+                      <h5 class="mb-0 mt-4">Comapny Information</h5>
                       <hr>
                       <div class="row g-3">
                         <div class="col-6">
                            <label class="form-label">Company Name</label>
-                           <input type="text" class="form-control" name="companyName" id="companyName" value="@jhon">
+                           <input type="text" class="form-control" name="name" id="name" placeholder="Enter Name">
                         </div>
                         <div class="col-6">
                          <label class="form-label">Company Email address</label>
-                         <input type="text" class="form-control" name="email" id="email" value="xyz@example.com">
+                         <input type="text" class="form-control" name="email" id="email" placeholder="xyz@example.com">
+                       </div>
+                         <div class="col-12">
+                         <label class="form-label">Address</label>
+                         <input type="text" class="form-control" name="address" id="address" placeholder="xyz@example.com">
+                       </div><div class="col-12">
+                         <label class="form-label">Description</label>
+                         <textarea type="text" class="form-control" rows="4" cols="4" name="description" id="description" placeholder="Enter Company Description"></textarea>
                        </div>
                      </div>
-        
-                     <h5 class="mb-0 mt-4">Contact Information</h5>
-                     <hr>
-                     <div class="row g-3">
-                      <div class="col-12">
-                        <label class="form-label">Address</label>
-                        <input type="text" class="form-control" name="address" id="address" value="47-A, city name, United States">
-                       </div>
-                       
-                      <div class="col-12">
-                        <label class="form-label">Description</label>
-                        <textarea class="form-control" rows="4" cols="4" name="description" id="description" placeholder="Describe your company..."></textarea>
-                       </div>
-                      </div>
                       <div class="text-start mt-3">
-                        <button type="button" class="btn btn-dark px-4">Save Changes</button>
+                        <button type="submit" class="btn btn-dark px-4">Add Company</button>
                       </div>
                     </div>
                    </form>
@@ -56,4 +53,4 @@
         <!-- end page content-->
       </div>
       <!--end page content wrapper-->
-      {{> footer}}
+      {{>footer}}

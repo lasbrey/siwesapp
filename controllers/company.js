@@ -1,4 +1,5 @@
 const Company = require("../models/company");
+const cloudinary = require("../config/cloudinaryConfig");
 
 /**
  * @desc    Add new company
@@ -6,13 +7,31 @@ const Company = require("../models/company");
  * @access  Private
  */
 exports.addCompany = async (req, res, next) => {
-  const company = await Company.create(req.body);
+  const { name, email, address, description } = req.body;
   const user = req.user;
+  const result = await cloudinary.uploader.upload(req.file.path);
+  const photo = result.secure_url;
+  const oldCompany = await Company.findOne({ email });
+
+  if (oldCompany) {
+    console.log("Company Email taken");
+    return res.render("addcompany", {
+      title: "Create New Company",
+      message: "Email already in use",
+    });
+  }
+  Company.create({
+    companyName: name,
+    email,
+    address,
+    companyDescrption: description,
+    companyImage: photo,
+  });
 
   res.render("addcompany", {
     title: "New Company",
     user,
-    company,
+    message: "Company Added",
   });
 };
 

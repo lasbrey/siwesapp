@@ -15,7 +15,7 @@
                       
                       <div class="mb-4 d-flex flex-column gap-3 align-items-center justify-content-center">
                         <div class="user-change-photo shadow">
-                          <img src="/uploads/{{user.photo}}">
+                          <img src="{{user.photo}}">
                         </div>
                       </div> 
                       <h5 class="mb-0 mt-4">User's Information</h5>
@@ -28,6 +28,9 @@
                         <div class="col-6">
                          <label class="form-label">Email address</label>
                           <labal class="form-control" > {{user.email}}</labal>
+                       </div><div class="col-6">
+                         <label class="form-label">Role</label>
+                          <labal class="form-control" > {{user.role}}</labal>
                        </div>
                      </div>
         
@@ -36,7 +39,7 @@
                      <div class="row g-3">
                       <div class="col-12">
                         <label class="form-label">Address</label>
-                         <label class="form-control"> {{user.address}}</label>
+                         <label class="form-control"> 28 Abiola street Emene abuja</label>
                        </div>
                        
                     </div>

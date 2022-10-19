@@ -3,7 +3,6 @@ const Verification = require("../models/verification");
 const ErrorResponse = require("../utils/errorResponse");
 const cloudinary = require("../config/cloudinaryConfig");
 
-
 /**
  * @desc    Loads home page
  * @route   GET /
@@ -47,8 +46,9 @@ exports.getCompany = async (req, res, next) => {
  * @access  Public
  */
 exports.getCompanies = async (req, res, next) => {
-  const user = req.user,
-    company = Company.find({});
+  const user = req.user;
+  const company = Company.find({});
+  console.log(company)
 
   res.render("companies", {
     title: "All Companies",
@@ -99,5 +99,3 @@ exports.acceptanceLetter = async (req, res, next) => {
     message: "Data Updated",
   });
 };
-
-

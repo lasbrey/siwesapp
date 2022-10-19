@@ -84,7 +84,7 @@ router
     });
   })
   .post("/request", isAuthenticated, request, authorize("company"))
-  .get("/addcompany", isAuthenticated,authorize("company", "admin"), (req, res) => {
+  .get("/addcompany", isAuthenticated, authorize("company", "admin"), (req, res) => {
     res.render("addcompany", {
       title: "Add Company",
       user: req.user
@@ -93,8 +93,9 @@ router
   .post(
     "/addcompany",
     isAuthenticated,
-    addCompany,
-    authorize("company", "admin")
+    upload.single('profilepicture'),
+    authorize("company", "admin"),
+    addCompany
   )
   .delete(
     "/deletecompany",

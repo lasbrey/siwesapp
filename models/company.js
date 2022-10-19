@@ -3,12 +3,23 @@ const Schema = mongoose.Schema;
 const slugify = require('slugify');
 
 const companySchema = new Schema({
+  companyImage: {
+    type: String
+  },
   companyName: {
     type: String,
     required: true,
   },
-  Letter: String,
-  slug: String,
+  email: {
+    type: String,
+    required: true,
+  },
+  address: {
+    type: String,
+  },
+  slug: {
+    type: String
+  },
   companyDescrption: {
     type: String,
   },
@@ -25,7 +36,7 @@ const companySchema = new Schema({
 
 // Create company slug from the name
 companySchema.pre('save', function(next) {
-  this.slug = slugify(this.name, { lower: true, remove: /[*+~\/\\.()'"!:@]/g })
+  this.slug = slugify(this.companyName, { lower: true, remove: /[*+~\/\\.()'"!:@]/g })
   next();
 })
 

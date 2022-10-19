@@ -1,4 +1,5 @@
 const Company = require("../models/company");
+const Acceptance = require("../models/acceptance");
 const cloudinary = require("../config/cloudinaryConfig");
 
 /**
@@ -86,9 +87,8 @@ exports.deleteCompany = async (req, res, next) => {
  * @access  Private
  */
 exports.request = async (req, res, next) => {
-  const company = await Company.find(req.params.id);
-  const requests = company.requests;
-
+  const requests = await Acceptance.find({});
+  const user = req.user;
   if (!requests) {
     res.render("requests", { message: "No intenship requests" });
   } else {

@@ -1,5 +1,6 @@
 const Company = require("../models/company");
 const User = require("../models/user");
+const Acceptance = require("../models/acceptance");
 const Verification = require("../models/verification");
 const ErrorResponse = require("../utils/errorResponse");
 const cloudinary = require("../config/cloudinaryConfig");
@@ -26,7 +27,7 @@ exports.home = async (req, res, next) => {
  * @access  Public
  */
 exports.getCompany = async (req, res, next) => {
-  const company = await Company.findOne({slug : req.params.slug});
+  const company = await Company.findOne({ slug: req.params.slug });
 
   if (!company)
     return next(
@@ -38,6 +39,35 @@ exports.getCompany = async (req, res, next) => {
     title: company.companyName,
     user,
     company,
+  });
+};
+
+/**
+ * @desc    Loads individual company page
+ * @route   POST
+ * @access  Public
+ */
+
+//find company based on slug and then add an intenship request to it create a intenship request model
+exports.postCompany = async (req, res, next) => {
+  const { companyname, studentname, slug } = req.body;
+  const companyconfirm = Company.find({ slug: slug });
+  const company = await Company.findOne({ slug: req.params.slug });
+
+  if (!companyconfirm)
+    return next(new ErrorResponse(`Company not found with said ID`, 404));
+
+  Acceptance.create({
+    companyName: companyname,
+    companySlug: slug,
+    username: studentname,
+  });
+  const user = req.user;
+  res.render("company", {
+    title: company.companyName,
+    user,
+    company,
+    message: "Application Submitted Successfully"
   });
 };
 
@@ -93,8 +123,8 @@ exports.students = async (req, res, next) => {
  * @route   GET /profile/:name
  * @access  Public
  */
- exports.profile = async (req, res, next) => {
-  const profile = await User.findOne({name : req.params.name});
+exports.profile = async (req, res, next) => {
+  const profile = await User.findOne({ name: req.params.name });
 
   if (!profile)
     return next(

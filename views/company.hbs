@@ -9,8 +9,12 @@
 
             <div class="card shadow-sm border-0">
               <div class="card-body">
+                
                 <div class="product-detail-card">
                   <div class="product-detail-body">
+                    {{#if message }}
+							<h4 class="alert alert-success mt-4">{{message}}</h4>
+							{{/if}}
                     <div class="row g-0">
                         <div class="col-12 col-lg-5">
                             <div class="item">
@@ -35,7 +39,7 @@
                           </div>
                           <!--end row-->
                           <div class="d-flex gap-2 mt-3">
-                            <a href="javascript:;" class="btn btn-dark btn-ecomm">Apply</a> 
+                            <a href="javascript:;" class="btn btn-dark btn-ecomm" data-bs-toggle="modal" data-bs-target="#exampleDarkModal">Apply</a> 
                           </div>
                           <hr />
                           <div class="product-sharing">
@@ -67,6 +71,43 @@
 
               </div>
             </div>
+
+             <div class="col">
+                      <!-- Button trigger modal -->
+                      <!-- Modal -->
+                      <div class="modal fade" id="exampleDarkModal" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog modal-lg modal-dialog-centered">
+                          <div class="modal-content bg-dark">
+                            <form action="/companies/{{company.slug}}" method="post">
+                            <div class="modal-header">
+                              <h5 class="modal-title text-white">Apply to {{company.companyName}}</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body text-white">
+                      <div class="row g-3">
+                        <div class="col-6">
+                           <label class="form-label">Company's Name</label>
+                           <input type="text" name="companyname" class="form-control" value="{{company.companyName}}">
+                        </div>
+                        <div class="col-6">
+                         <label class="form-label">Company's Slug</label>
+                         <input type="text" name="slug" class="form-control" value="{{company.slug}}">
+                       </div>
+                       <div class="col-6">
+                         <label class="form-label">Student Name</label>
+                         <input type="text" name="studentname" class="form-control" value="{{user.name}}">
+                       </div>
+                     </div>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                              <button type="submit" class="btn btn-dark">Apply</button>
+                            </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
 
           </div>
         </section>

@@ -5,7 +5,7 @@
         <div class="page-content">
           <!--start breadcrumb-->
           <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-            <div class="breadcrumb-title pe-3">Students</div>
+            <div class="breadcrumb-title pe-3">Intenship Requests</div>
           </div>
           <!--end breadcrumb-->
 
@@ -17,17 +17,17 @@
                         <table id="example2" class="table table-striped table-bordered">
                             <thead>
                                 <tr>
-                                    <th>Image</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
+                                    <th>Company's Name</th>
+                                    <th>Company Slug</th>
+                                    <th>Student's Name</th>
                                 </tr>
                             </thead>
                             <tbody>
                                {{#each requests}}
                                 <tr>
-                                    <td>{{image}}</td>
-                                    <td>{{name}}</td>
-                                    <td>{{email}}</td>
+                                    <td>{{companyName}}</td>
+                                    <td>{{companySlug}}</td>
+                                    <td>{{username}}</td>
                                 </tr>
                                {{/each}}
                         </table>

@@ -6,8 +6,13 @@ const acceptanceSchema = new Schema({
     type: String,
     required: true,
   },
+  companySlug: {
+    type: String,
+    required: true,
+  },
   username: {
     type: String,
+    required: true
   }
 });
 

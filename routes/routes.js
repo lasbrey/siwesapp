@@ -13,6 +13,7 @@ const {
 const {
   home,
   getCompany,
+  postCompany,
   getCompanies,
   employees,
   students,
@@ -69,6 +70,7 @@ router
   .get("/profile/:name", isAuthenticated, profile)
   .get("/students", isAuthenticated, students)
   .get("/companies/:slug", isAuthenticated, getCompany)
+  .post("/companies/:slug", isAuthenticated, postCompany)
   // .post("/companies/:slug", isAuthenticated, getCompany)
   .get("/companies", isAuthenticated, getCompanies)
   .get("/updatedetails", isAuthenticated, updateDetails)
@@ -87,13 +89,7 @@ router
    * @desc    Company routes
    * @access  Public
    */
-  .get("/request", isAuthenticated, (req, res) => {
-    res.render("requests", {
-      title: "Intenship Request",
-      user:req.user
-    });
-  })
-  .post("/request", isAuthenticated, request, authorize("company"))
+  .get("/request", isAuthenticated, request)
   .get("/addcompany", isAuthenticated, authorize("company", "admin"), (req, res) => {
     res.render("addcompany", {
       title: "Add Company",

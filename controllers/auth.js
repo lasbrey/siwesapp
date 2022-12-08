@@ -21,7 +21,7 @@ exports.login = async (req, res) => {
 
     if (!user || !(await bcrypt.compare(password, user.password))) {
       res.status(401).render("login", {
-        message: "Email or Password is incorrect"
+        message: "Email or Password is incorrect",
       });
     } else {
       const id = user.id;
@@ -43,25 +43,28 @@ exports.login = async (req, res) => {
  * @access  Public
  */
 exports.register = async (req, res, next) => {
+  try {
+    const { name, email, password } = req.body;
+    if (password && password.length < 6) {
+      res.send({ message: "Password is less than six characters!" });
+      console.log("error 1");
+    }
 
-  const { name, email, password } = req.body;
-  if (password && password.length < 6) {
-    res.send({ message: "Password is less than six characters!" });
-    console.log("error 1");
-  }
+    const oldUser = await User.findOne({ email });
 
-  const oldUser = await User.findOne({ email });
-
-  if (oldUser) {
-    // res.send({ message: "Email address has been taken :(" });
-    return res.render("register", {
-      title: "Register",
-      message: "Email already in use"
-    });
-  } else {
-    let hashedPassword = await bcrypt.hash(password, 8);
-    const user = await User.create({name, email, password:hashedPassword });
-    res.status(200).redirect("/login");
+    if (oldUser) {
+      // res.send({ message: "Email address has been taken :(" });
+      return res.render("register", {
+        title: "Register",
+        message: "Email already in use",
+      });
+    } else {
+      let hashedPassword = await bcrypt.hash(password, 8);
+      const user = await User.create({ name, email, password: hashedPassword });
+      res.status(200).redirect("/login");
+    }
+  } catch (error) {
+    console.log(error);
   }
 };
 
@@ -99,12 +102,10 @@ exports.updateDetails = async (req, res, next) => {
  * @route   GET /logout
  * @access  Public
  */
- exports.logout = async(req, res) => {
-  res.cookie('jwt', 'logout', {
-      expires: new Date(Date.now() + 2 * 1000),
-      httpOnly: true
+exports.logout = async (req, res) => {
+  res.cookie("jwt", "logout", {
+    expires: new Date(Date.now() + 2 * 1000),
+    httpOnly: true,
   });
-  res.status(200).redirect('/login');
-}
-
-
+  res.status(200).redirect("/login");
+};

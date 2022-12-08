@@ -46,11 +46,13 @@ router
     title: "Home",
   });
 })
-  .get("/register", (req, res) => {
-    res.render("register", {
-      title: "Sign Up",
-    });
-  })
+ 
+.get("/register", (req, res) => {
+  res.render("register", {
+    title: "Sign Up",
+  });
+})
+
   .get("/login", login)
   .post("/register", register)
   .post("/login", login)
